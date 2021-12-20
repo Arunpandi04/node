@@ -2,11 +2,12 @@
   "name": "ecom",
   "version": "1.0.0",
   "description": "ecom demo",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/index.ts",
-    "test": "tsc && jest"
+    "test": "tsc && jest",
+    "postinstall": "tsc"
   },
   "author": "arun",
   "license": "ISC",
