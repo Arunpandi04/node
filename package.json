@@ -4,7 +4,8 @@
   "description": "ecom demo",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && nodemon dist/index.js",
+    "build": "tsc",
+    "start": "ts-node src/index.ts",
     "test": "tsc && jest"
   },
   "author": "arun",
