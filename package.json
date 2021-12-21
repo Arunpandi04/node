@@ -7,7 +7,7 @@
     "build": "tsc",
     "start": "ts-node src/index.ts",
     "test": "tsc && jest",
-    "postinstall": "tsc"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "arun",
   "license": "ISC",
