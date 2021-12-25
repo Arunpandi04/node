@@ -9,6 +9,9 @@
     "test": "tsc && jest",
     "heroku-postbuild": "tsc"
   },
+  "engines": {
+    "node": "14.18.2"
+  },
   "author": "arun",
   "license": "ISC",
   "dependencies": {
