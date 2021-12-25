@@ -5,15 +5,11 @@ import cors  from "cors";
 import  mongoose from 'mongoose';
 import {cornRoute} from './Routes/cornRoute'
 import * as cron from 'node-cron'
-import { createConnection } from 'typeorm';
-import config from './config'
 import 'reflect-metadata';
 require('dotenv').config();
 class App {
 
    public expressApp: express.Application;
-   public mongoUrl: string = 'mongodb+srv://Arun_10d:Arun_10d@cluster0.2nl1h.mongodb.net/user?retryWrites=true&w=majority';
-
    public initialroutes:initialRoutes = new initialRoutes();;
    constructor() {
       this.expressApp = express();
@@ -32,14 +28,9 @@ class App {
    }
 
    private async mongoSetup(){
-    await mongoose.connect(this.mongoUrl, {useCreateIndex: true,useUnifiedTopology: true,
+      const URL = process.env.mongoUrl || "";
+    await mongoose.connect(URL, {useCreateIndex: true,useUnifiedTopology: true,
     useFindAndModify: false, useNewUrlParser: true}).then(() => console.log('mongoDB connected...'));
-   // try {
-   //    await createConnection(config).then(()=>console.log("DataBase Connected",process.env.PORT))
-   //  } catch (error) {
-   //    console.log('Error while connecting to the database', error);
-   //    return error;
-   //  }
    }
    private routes():void{
       cron.schedule('5 * * * * *', () => {
@@ -49,7 +40,7 @@ class App {
       
     }
    private portSetup() :void{
-    const PORT = 3000 || "";
+    const PORT = process.env.PORT || 3000;
 
     this.expressApp.listen(PORT, () => {
        console.log('Express server listening on port ' + PORT);
@@ -57,4 +48,4 @@ class App {
    }
 
 }
-export default new App().expressApp;
+export default new App();
