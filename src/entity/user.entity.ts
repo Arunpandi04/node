@@ -1,20 +1,20 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn,JoinTable } from 'typeorm';
-import Address from './address.entity';
-import Post from './post.entity';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn,JoinTable } from 'typeorm'
+import Address from './address.entity'
+import Post from './post.entity'
  
 @Entity()
 class User {
   @PrimaryGeneratedColumn()
-  public id: string;
+  public id: string
  
   @Column()
-  public name: string;
+  public name: string
  
   @Column()
-  public email: string;
+  public email: string
  
   @Column()
-  public password: string;
+  public password: string
  
   @OneToOne(() => Address, (address: Address) => address.user, {
     cascade: true,
@@ -27,7 +27,7 @@ class User {
     cascade: true,
     eager: true,
   })
-  public posts: Post[];
+  public posts: Post[]
 }
  
-export default User;
+export default User

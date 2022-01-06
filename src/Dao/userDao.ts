@@ -6,7 +6,6 @@ import {signupData} from '../Utils/Types'
 // import post from '../entity/post.entity'
 export class userDao {
     public async create_cart(body:any){
-        console.log("body",body.password);
         // let connection = await getConnection();
         const result = new userModal({
             firstName: body.firstName,
@@ -18,7 +17,6 @@ export class userDao {
             password:body.password
           });
 
-        
         //   const users = new User();
         //   const userRepo =connection.getRepository(User)
         //   return userRepo.save(body)

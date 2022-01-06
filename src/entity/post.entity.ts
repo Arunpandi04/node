@@ -1,19 +1,19 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import User from './user.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+import User from './user.entity'
  
 @Entity()
 class Post {
   @PrimaryGeneratedColumn()
-  public id: number;
+  public id: number
  
   @Column()
-  public title: string;
+  public title: string
  
   @Column()
-  public content: string;
+  public content: string
  
   @ManyToOne(() => User, (author: User) => author.posts)
-  public author: User;
+  public author: User
 }
  
-export default Post;
+export default Post

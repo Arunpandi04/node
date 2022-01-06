@@ -1,4 +1,4 @@
-import * as Joi from "joi";
+import * as Joi from "joi"
 export class User {
 
   public validateUser(payload: any) {
@@ -26,9 +26,9 @@ export class User {
           .map((x) => x.message)
           .join(", ")}`
       };
-      return err;
+      return err
     } else {
-      return value;
+      return value
     }
   }
   

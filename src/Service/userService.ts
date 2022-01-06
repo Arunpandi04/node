@@ -1,21 +1,20 @@
-import { userDao } from '../Dao/userDao';
+import { userDao } from '../Dao/userDao'
 import { User } from '../Validation/validation'
-import { Response } from '../Utils/Response';
+import { Response } from '../Utils/Response'
 import * as jwt from 'jsonwebtoken'
 import { post_response, get_response, error_response, fail_response } from '../Utils/Types'
 import {signupData} from '../Utils/Types'
 import {omit} from 'lodash'
 
-const response = new Response();
-const user_validate = new User();
+const response = new Response()
+const user_validate = new User()
 export class userService{
     
     constructor(public UserDao: userDao = new userDao()) { }
     public async signup(body: any){
         let isUser :any = await this.UserDao.findone(body.email)
         if(!isUser){
-            const data = await this.UserDao.create_cart(body);
-console.log("dataa",data)
+            const data = await this.UserDao.create_cart(body)
             const token = jwt.sign({
                 expiresIn: "3h",
                 data: body.email
@@ -33,8 +32,8 @@ console.log("dataa",data)
             const token = jwt.sign({
                 expiresIn: "3h",
                 data: body.email
-            }, 'secret');
-            console.log("token",omit(data,'password'));
+            }, 'secret')
+            console.log("token",omit(data,'password'))
             return response.Success(omit(data,'password'),token,"signin success")
         }else{
             return response.falied("email or password is incorrect")
@@ -42,11 +41,11 @@ console.log("dataa",data)
     }
 
     public async getUser(id: string): Promise<post_response | get_response | error_response >  {
-           let user = await this.UserDao.getUser(id);
+           let user = await this.UserDao.getUser(id)
         if (!user) {
             return response.notFound()
         }
-        return response.Success(omit(user,'password'), null,"sucess");
+        return response.Success(omit(user,'password'), null,"sucess")
     }
 
     public async updateuser(id: string, body: any): Promise<post_response | get_response | error_response> {
@@ -63,11 +62,11 @@ console.log("dataa",data)
             // user.email = body.email
             // user.address = body.address
             await this.UserDao.updateuser(id, body)
-        let result = await this.UserDao.getUser(id);
+        let result = await this.UserDao.getUser(id)
         if(!result){
             return response.notFound()
           }
-        return response.Success(omit(result,'password'),null,"sucess");
+        return response.Success(omit(result,'password'),null,"sucess")
     }
 
 }

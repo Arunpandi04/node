@@ -1,22 +1,22 @@
-import { Column,JoinColumn, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import User from './user.entity';
+import { Column,JoinColumn, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
+import User from './user.entity'
  
 @Entity()
 class Address {
   @PrimaryGeneratedColumn()
-  public id: string;
+  public id: string
  
   @Column()
-  public street: string;
+  public street: string
  
   @Column()
-  public city: string;
+  public city: string
  
   @Column()
-  public country: string;
+  public country: string
  
   @OneToOne(() => User, (user: User) => user.address)
-  public user: User;
+  public user: User
 }
  
-export default Address;
+export default Address

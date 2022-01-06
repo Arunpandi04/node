@@ -7,6 +7,6 @@ export class initialRoutes{
       this.user=new userRoutes();
     }
     public initialRoutes(app: Application): void {
-        this.user.userroutes(app);
+        this.user.userroutes(app)
     }
 }
